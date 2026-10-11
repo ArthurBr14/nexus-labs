@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexus Labs | Tecnologia de Próxima Geração</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600;700&family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-dark: #0a0c10;
+            --card-bg: rgba(22, 27, 34, 0.7);
+            --border-color: rgba(255, 255, 255, 0.1);
+            --primary-neon: #00f0ff;
+            --secondary-neon: #ff0055;
+            --accent-green: #00ff88;
+            --text-main: #f0f6fc;
+            --text-muted: #8b949e;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, .brand-logo {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        /* Navbar */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(10, 12, 16, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .brand-logo i {
+            color: var(--primary-neon);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--primary-neon);
+        }
+
+        .btn-cta {
+            background: linear-gradient(135deg, var(--primary-neon), #0077ff);
+            color: #000;
+            padding: 0.6rem 1.4rem;
+            border-radius: 30px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.4);
+        }
+
+        /* Hero */
+        .hero {
+            padding: 140px 2rem 80px;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 6px 16px;
+            background: rgba(0, 240, 255, 0.1);
+            border: 1px solid var(--primary-neon);
+            color: var(--primary-neon);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            letter-spacing: 1px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(180deg, #fff 0%, #8b949e 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+
+        /* Products Grid */
+        .product-section {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 2rem;
+        }
+
+        .product-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 2.5rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            margin-bottom: 4rem;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        }
+
+        .product-image-container {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            background: #000;
+        }
+
+        .product-image-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s;
+        }
+
+        .product-card:hover .product-image-container img {
+            transform: scale(1.03);
+        }
+
+        .product-tag {
+            color: var(--primary-neon);
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-card h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .product-card p {
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .features-list {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .features-list li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 0.8rem;
+            color: var(--text-main);
+        }
+
+        .features-list li i {
+            color: var(--accent-green);
+        }
+
+        /* Simulator Controls */
+        .simulator-box {
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--border-color);
+            padding: 1.5rem;
+            border-radius: 16px;
+            margin-top: 1.5rem;
+        }
+
+        .simulator-box h4 {
+            margin-bottom: 1rem;
+            font-size: 1rem;
+            color: var(--primary-neon);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .sim-btn {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid var(--border-color);
+            color: #fff;
+            padding: 0.6rem 1.2rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            margin-right: 8px;
+            margin-bottom: 8px;
+        }
+
+        .sim-btn:hover, .sim-btn.active {
+            background: var(--primary-neon);
+            color: #000;
+            border-color: var(--primary-neon);
+            box-shadow: 0 0 10px rgba(0, 240, 255, 0.4);
+        }
+
+        .sim-status {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            padding: 8px 12px;
+            background: rgba(0, 255, 136, 0.1);
+            border-left: 3px solid var(--accent-green);
+            color: var(--accent-green);
+            border-radius: 4px;
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--border-color);
+            padding: 3rem 2rem;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 900px) {
+            .product-card {
+                grid-template-columns: 1fr;
+            }
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            nav ul {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <div class="brand-logo">
+                <i class="fa-solid fa-atom"></i> NEXUS LABS
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#modu-desk">Modu-Desk</a></li>
+                    <li><a href="#spider-flex">Spider Flex</a></li>
+                    <li><a href="#mcfly">Tênis McFly</a></li>
+                </ul>
+            </nav>
+            <a href="#pre-venda" class="btn-cta">Garantir Pré-Venda</a>
+        </div>
+    </header>
+
+    <section class="hero">
+        <span class="badge">TECNOLOGIA DO FUTURO HOJE</span>
+        <h1>Inovações que Redefinem o seu Dia a Dia</h1>
+        <p>A Nexus Labs apresenta sua tríade de produtos revolucionários para organização inteligente, vestuário biomecânico e calçados com ajuste automatizado.</p>
+    </section>
+
+    <div class="product-section">
+        
+        <!-- MODU-DESK -->
+        <div class="product-card" id="modu-desk">
+            <div class="product-image-container">
+                <img src="modu-desk.jpg" alt="Modu-Desk Smart Organizer">
+            </div>
+            <div>
+                <div class="product-tag">Organização Inteligente</div>
+                <h2>Modu-Desk</h2>
+                <p>A gaveta organizadora modular smart com encaixe magnético, displays digitais E-Ink e sistema LED "Find-My-Doc" integrado para localização imediata de documentos.</p>
+                <ul class="features-list">
+                    <li><i class="fa-solid fa-check-circle"></i> Módulos magnéticos expansíveis Click-N-Stack</li>
+                    <li><i class="fa-solid fa-check-circle"></i> Displays digitais com atualização via App</li>
+                    <li><i class="fa-solid fa-check-circle"></i> LED de localização Find-My-Doc</li>
+                </ul>
+
+                <div class="simulator-box">
+                    <h4><i class="fa-solid fa-sliders"></i> Simulador: Localizar Documento</h4>
+                    <button class="sim-btn" onclick="triggerLed('Contratos')">Contratos</button>
+                    <button class="sim-btn" onclick="triggerLed('Passaporte')">Passaporte</button>
+                    <button class="sim-btn" onclick="triggerLed('Gadgets')">Gadgets</button>
+                    <div class="sim-status" id="led-status">Selecione um item para ativar a luz LED verde no gaveteiro.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SPIDER FLEX -->
+        <div class="product-card" id="spider-flex">
+            <div>
+                <div class="product-tag">Vestuário Biomecânico</div>
+                <h2>Spider Flex</h2>
+                <p>Camiseta de alta compressão biomimética com correção postural tátil e tecido dinâmico programável que adapta o suporte muscular à sua rotina esportiva.</p>
+                <ul class="features-list">
+                    <li><i class="fa-solid fa-check-circle"></i> Correção postural em tempo real</li>
+                    <li><i class="fa-solid fa-check-circle"></i> Tecido respirável e ultra-resistente</li>
+                    <li><i class="fa-solid fa-check-circle"></i> Compressão gradual inteligente</li>
+                </ul>
+
+                <div class="simulator-box">
+                    <h4><i class="fa-solid fa-shirt"></i> Simulador: Modo de Compressão</h4>
+                    <button class="sim-btn" onclick="setCompression('Treino Intenso')">Treino Intenso</button>
+                    <button class="sim-btn" onclick="setCompression('Postura de Escritório')">Postura Escritório</button>
+                    <div class="sim-status" id="spider-status">Modo Atual: Padrão (Conforto diário)</div>
+                </div>
+            </div>
+            <div class="product-image-container">
+                <img src="spider-flex.jpg" alt="Camiseta Spider Flex">
+            </div>
+        </div>
+
+        <!-- MCFLY SNEAKERS -->
+        <div class="product-card" id="mcfly">
+            <div class="product-image-container">
+                <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=1000&q=80" alt="Tênis McFly Self-Lacing">
+            </div>
+            <div>
+                <div class="product-tag">Calçados Futuristas</div>
+                <h2>McFly Sneakers</h2>
+                <p>Tênis futurista com tecnologia Power-Lacing: os cadarços se ajustam automaticamente ao formato do seu pé ao tocar os calcanhares no chão.</p>
+                <ul class="features-list">
+                    <li><i class="fa-solid fa-check-circle"></i> Ajuste automático Auto-Fit pelo calcanhar</li>
+                    <li><i class="fa-solid fa-check-circle"></i> Sola com amortecimento eletromagnético</li>
+                    <li><i class="fa-solid fa-check-circle"></i> Bateria recarregável por indução (até 2 semanas)</li>
+                </ul>
+
+                <div class="simulator-box">
+                    <h4><i class="fa-solid fa-shoe-prints"></i> Simulador: Sistema Power-Lacing</h4>
+                    <button class="sim-btn" onclick="toggleLaces()">Dar o 'Click' nos Calcanhares</button>
+                    <div class="sim-status" id="mcfly-status">Status dos Cadarços: Desajustados (Abertos)</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Nexus Labs. Todos os direitos reservados. Projeto demonstrativo de landing page futurista.</p>
+    </footer>
+
+    <script>
+        function triggerLed(item) {
+            document.getElementById('led-status').innerText = `Luz LED Verde ativada na Gaveta 2 para localizar: "${item}"`;
+        }
+
+        function setCompression(mode) {
+            document.getElementById('spider-status').innerText = `Compressão Biomimética ajustada para: ${mode}`;
+        }
+
+        let lacesLocked = false;
+        function toggleLaces() {
+            lacesLocked = !lacesLocked;
+            const status = document.getElementById('mcfly-status');
+            if(lacesLocked) {
+                status.innerText = "Status dos Cadarços: APERTADOS AUTOMATICAMENTE! (Ajuste Perfeito)";
+            } else {
+                status.innerText = "Status dos Cadarços: Desajustados (Abertos)";
+            }
+        }
+    </script>
+</body>
+</html>
